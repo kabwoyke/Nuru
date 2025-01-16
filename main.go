@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/AvicennaJr/Nuru/repl"
-	"github.com/AvicennaJr/Nuru/styles"
+	"github.com/NuruProgramming/Nuru/repl"
+	"github.com/NuruProgramming/Nuru/styles"
 	"github.com/charmbracelet/lipgloss"
 )
 
@@ -15,8 +15,8 @@ var (
 		Render(`
 █░░ █░█ █▀▀ █░█ ▄▀█   █▄█ ▄▀█   █▄░█ █░█ █▀█ █░█
 █▄▄ █▄█ █▄█ █▀█ █▀█   ░█░ █▀█   █░▀█ █▄█ █▀▄ █▄█`)
-	Version = styles.VersionStyle.Render("v0.5.1")
-	Author  = styles.AuthorStyle.Render("by Avicenna")
+	Version = styles.VersionStyle.Render("v0.5.17")
+	Author  = styles.AuthorStyle.Render("by Nuru Org")
 	NewLogo = lipgloss.JoinVertical(lipgloss.Center, Title, lipgloss.JoinHorizontal(lipgloss.Center, Author, " | ", Version))
 	Help    = styles.HelpStyle.Italic(false).Render(fmt.Sprintf(`💡 Namna ya kutumia Nuru:
 	%s: Kuanza programu ya Nuru

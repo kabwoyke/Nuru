@@ -3,7 +3,7 @@
 package lexer
 
 import (
-	"github.com/AvicennaJr/Nuru/token"
+	"github.com/NuruProgramming/Nuru/token"
 )
 
 type Lexer struct {
@@ -167,6 +167,11 @@ func (l *Lexer) NextToken() token.Token {
 			tok = token.Token{Type: token.MODULUS_ASSIGN, Line: l.line, Literal: string(ch) + string(l.ch)}
 		} else {
 			tok = newToken(token.MODULUS, l.line, l.ch)
+		}
+	case rune('#'):
+		if l.peekChar() == rune('!') && l.line == 1 {
+			l.skipSingleLineComment()
+			return l.NextToken()
 		}
 	case 0:
 		tok.Literal = ""

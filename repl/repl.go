@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	prompt "github.com/AvicennaJr/GoPrompt"
-	"github.com/AvicennaJr/Nuru/evaluator"
-	"github.com/AvicennaJr/Nuru/lexer"
-	"github.com/AvicennaJr/Nuru/object"
-	"github.com/AvicennaJr/Nuru/parser"
-	"github.com/AvicennaJr/Nuru/styles"
+	"github.com/NuruProgramming/Nuru/evaluator"
+	"github.com/NuruProgramming/Nuru/lexer"
+	"github.com/NuruProgramming/Nuru/object"
+	"github.com/NuruProgramming/Nuru/parser"
+	"github.com/NuruProgramming/Nuru/styles"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -20,31 +20,6 @@ import (
 )
 
 const PROMPT = ">>> "
-const ERROR_FACE = `
-	███████████████████████████
-	███████▀▀▀░░░░░░░▀▀▀███████
-	████▀░░░░░░░░░░░░░░░░░▀████
-	███│░░░░░░░░░░░░░░░░░░░│███
-	██▌│░░░░░░░░░░░░░░░░░░░│▐██
-	██░└┐░░░░░░░░░░░░░░░░░┌┘░██
-	██░░└┐░░░░░░░░░░░░░░░┌┘░░██
-	██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
-	██▌░│██████▌░░░▐██████│░▐██
-	███░│▐███▀▀░░▄░░▀▀███▌│░███
-	██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
-	██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
-	████▄─┘██▌░░░░░░░▐██└─▄████
-	█████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
-	████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
-	█████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
-	███████▄░░░░░░░░░░░▄███████
-	██████████▄▄▄▄▄▄▄██████████
-	███████████████████████████
-
-  █▄▀ █░█ █▄░█ ▄▀█   █▀ █░█ █ █▀▄ ▄▀█
-  █░█ █▄█ █░▀█ █▀█   ▄█ █▀█ █ █▄▀ █▀█
-
-`
 
 //go:embed docs
 var res embed.FS
@@ -58,7 +33,6 @@ func Read(contents string) {
 	program := p.ParseProgram()
 
 	if len(p.Errors()) != 0 {
-		fmt.Println(styles.ErrorStyle.Italic(false).Render(ERROR_FACE))
 		fmt.Println(styles.ErrorStyle.Italic(false).Render("Kuna Errors Zifuatazo:"))
 
 		for _, msg := range p.Errors() {
@@ -174,6 +148,23 @@ var (
 	}
 
 	kiswahiliItems = []list.Item{
-		item{title: "Maoni Katika Nuru", desc: "💬 Toa mawazo yako na maoni (comments) katika Nuru", filename: "comments.md"},
+		item{title: "Maoni Katika Nuru", desc: "💬 Toa mawazo yako na maoni (comments) katika Nuru", filename: "maoni.md"},
+		item{title: "Vitambulishi", desc: "🔖 Toa utambulisho wa kipekee kwa vigezo vyako katika Nuru", filename: "identifiers.md"},
+		item{title: "Nambari", desc: "🔢 Gundua uchawi wa nambari katika Nuru", filename: "numbers.md"},
+		item{title: "Maneno", desc: "🎼 Tunga hadithi kwa kutumia maneno katika Nuru", filename: "strings.md"},
+		item{title: "Kamusi", desc: "📚 Fungua maarifa ya kamusi katika Nuru", filename: "dictionaries.md"},
+		item{title: "Buliani", desc: "👍👎 Kuwa mtaalam wa ulimwengu wa 'if' na 'else' kwa kutumia bool", filename: "bools.md"},
+		item{title: "Tupu", desc: "🌌 Kubali utupu na Null katika Nuru", filename: "null.md"},
+		item{title: "Safu", desc: "🚀 Fungua nguvu za safu (arrays) katika Nuru", filename: "arrays.md"},
+		item{title: "Kwa", desc: "🔄 Rudia kama mtaalam kwa kutumia 'kwa' katika Nuru", filename: "for.md"},
+		item{title: "Wakati", desc: "⌛ Jifunze sanaa ya subira na vitanzi vya 'wakati' katika Nuru", filename: "while.md"},
+		item{title: "Undo", desc: "🔧 Unda kazi zenye nguvu katika Nuru", filename: "function.md"},
+		item{title: "Badili", desc: "🧭 Elekeza hali ngumu kwa kutumia 'badili' katika Nuru", filename: "switch.md"},
+		item{title: "Faili", desc: "💾 Shughulikia faili kwa urahisi katika Nuru", filename: "files.md"},
+		item{title: "Muda", desc: "⏰ Simamia muda kwa urahisi katika Nuru", filename: "time.md"},
+		item{title: "JSON", desc: "📄 Kuwa mtaalam wa sanaa ya JSON katika Nuru", filename: "json.md"},
+		item{title: "Mtandao", desc: "🌐 Chunguza ulimwengu wa mitandao katika Nuru", filename: "net.md"},
+		item{title: "Vifurushi", desc: "📦 Tumia nguvu za vifurushi katika Nuru", filename: "packages.md"},
+		item{title: "Vijenzi", desc: "💡 Funua siri za kazi za kujengwa katika Nuru", filename: "builtins.md"},
 	}
 )
